@@ -1,0 +1,24 @@
+server:
+  port: 30000
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:30000/eureka
+spring:
+  application:
+    name: eureka-center-base
+
+# ribbon超时时间设置：建议设置比Hystrix小
+# 请求连接的超时时间: 默认5000ms
+ribbon:
+  ConnectTimeout: 5000
+  # 请求处理的超时时间: 默认5000ms
+  ReadTimeout: 5000
+  # 重试次数：MaxAutoRetries表示访问服务集群下原节点（同路径访问）；MaxAutoRetriesNextServer表示访问服务集群下其余节点（换台服务器）
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+  # 开启重试
+  OkToRetryOnAllOperations: true
